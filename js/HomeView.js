@@ -57,10 +57,22 @@ var HomeView = function(store){
 	    * Moved from main.js to here with intro of views. 
 	    */
 	   
-	   
+	      
 	   //var self = this; this is a store object now.
 	   store.findByName($('.search-key').val(),function(employees){
 	   		$('.employee-list').html(HomeView.liTemplate(employees));
+	   });
+	   
+	   
+	   store.findByNam($('.search-key').val(),function(employees){
+	        $('.employee-list').html(HomeView.liTemplate(employees));
+	        if (self.iscroll) {
+	        	console.log('Refresh iScroll');
+	        	self.iscroll.refresh();
+	        } else {
+	        	console.log('New iscroll');
+	        	self.iscroll = new iScroll($('.scroll', self.el)[0], {hScrollbar:false, vScrollbar: false});
+	        }	        
 	   });
 	};
 	        
