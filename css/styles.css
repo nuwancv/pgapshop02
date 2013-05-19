@@ -189,6 +189,11 @@ h2 {
     height:100px;
 }
 
+
+
+
+
+
 .scroll {
 	overflow: auto;
 	-webkit-overflow-scrolling: touh;
@@ -197,4 +202,9 @@ h2 {
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
+}
+
+li>a.tappable-active{
+	color: #fff;
+	background-color: #4286F5;
 }

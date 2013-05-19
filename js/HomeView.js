@@ -59,12 +59,14 @@ var HomeView = function(store){
 	   
 	      
 	   //var self = this; this is a store object now.
-	   store.findByName($('.search-key').val(),function(employees){
+	   /* We implement this wih iscroll now.
+	    * 
+	    store.findByName($('.search-key').val(),function(employees){
 	   		$('.employee-list').html(HomeView.liTemplate(employees));
 	   });
+	   */
 	   
-	   
-	   store.findByNam($('.search-key').val(),function(employees){
+	   store.findByName($('.search-key').val(),function(employees){
 	        $('.employee-list').html(HomeView.liTemplate(employees));
 	        if (self.iscroll) {
 	        	console.log('Refresh iScroll');
