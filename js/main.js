@@ -12,6 +12,11 @@ var app = {
     
     registerEvents: function(){
     	var self = this;
+    	
+    	// Routing
+    	$(window).on('hashchange', $.proxy(this.route, this)); // 2- add an event listener to listen to URL hash tag changes:
+    	
+    	
     	// Check of browser supports touch events..
     	if (document.documentElement.hasOwnProperty('ontouchstart')){
     		
@@ -35,17 +40,45 @@ var app = {
     			$(event.target).removeClass('tappable-active');
     		});
     		
-    	}
+    	}    	
     },
         
+    
+    route: function(){
+    	var hash = window.location.hash;
+    	console.log("Hash : " + hash);
+    	if(!hash){  // If there is no hash tag in the URL: display the HomeView
+    		$('body').html(new HomeView(this.store).render().el);
+    		return;
+    	}
+    	
+    	var match = hash.match(app.detailsURL);
+    	if(match){   // If there is a has tag matching the pattern for an employee details URL: 
+    				// display an EmployeeView for the specified employee.
+    		console.log("Hash match number: " + Number(match[1]));
+    		this.store.findById(Number(match[1]), function(employee){
+    			$('body').html(new EmployeeView(employee).render().el);
+    		});
+    	}
+    },
+    
+    
     initialize: function() {
     	var self = this;
+    	console.log ("init defauly URL: " + this.defaultURL);
+    	this.detailsURL = /^#employees\/(\d{1,})/; 		// 1 - define a regular expression that matches employee details urls.
+    	this.registerEvents();
+       
+        /*
         this.store = new MemoryStore(function() {
         	//self.showAlert('Store initi done!', 'Info');
         	// Now we can use HomeView class with step-5 defining views.      self.renderHomeView();
+    
+			We now use view routing, so we do not need this here.    
         	$('body').html(new HomeView(self.store).render().el);
         });
-        
+        */
+       
         /* Moved to HomeView.js
          * 
          
@@ -55,7 +88,10 @@ var app = {
         this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
         */
        
-       this.registerEvents();
+       // Now with the views being routed to item view or Details view, we call the route()
+       this.store = new MemoryStore (function (){
+        		self.route();
+       });       
     }
     
     
