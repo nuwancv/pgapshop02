@@ -57,12 +57,12 @@ var EmployeeView = function(employee){
 		var options = { quality: 50,
 						destinationType: Camera.DestinationType.DATA_URL,
 						sourceType: 1, //0: Photo Library, 1=Camera, 2=Saved Photo Album
-						encordingType: 0
+						encodingType: 0
 					  };
 		
 		navigator.camera.getPicture(
 			function(imageData){
-				$('.employee-image', this.el).attr('src', "data:image/jpeg:based64," + imageData);
+				$('.employee-image', this.el).attr('src', "data:image/jpeg;base64," + imageData);
 			},
 			
 			function(){
