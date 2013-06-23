@@ -1,6 +1,8 @@
 var app = {
 
-
+	// App methods here...
+	//
+	
 	showAlert: function(message,title) {
     	if (navigator.notification) {
     		navigator.notification.alert(message,null,title,'OK');
@@ -53,7 +55,7 @@ var app = {
     	}
     	
     	var match = hash.match(app.detailsURL);
-    	if(match){   // If there is a has tag matching the pattern for an employee details URL: 
+    	if(match){   // If there is a hash tag matching the pattern for an employee details URL: 
     				// display an EmployeeView for the specified employee.
     		console.log("Hash match number: " + Number(match[1]));
     		this.store.findById(Number(match[1]), function(employee){
@@ -65,7 +67,7 @@ var app = {
     
     initialize: function() {
     	var self = this;
-    	console.log ("init defauly URL: " + this.defaultURL);
+    	console.log ("init default URL: " + this.defaultURL);
     	this.detailsURL = /^#employees\/(\d{1,})/; 		// 1 - define a regular expression that matches employee details urls.
     	this.registerEvents();
        
@@ -91,7 +93,12 @@ var app = {
        // Now with the views being routed to item view or Details view, we call the route()
        this.store = new MemoryStore (function (){
         		self.route();
-       });       
+       });  
+       
+       
+       // Try phonegap database functions.
+       console.log("Try DB functions");
+       dbAccess.dbInit();     
     }
     
     
