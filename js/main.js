@@ -97,8 +97,10 @@ var app = {
        
        
        // Try phonegap database functions.
-       console.log("Try DB functions");
-       dbAccess.dbInit();     
+       //console.log("Try DB functions");
+       //dbAccess.dbInit();
+       
+            
     }
     
     
