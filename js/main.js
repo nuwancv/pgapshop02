@@ -91,15 +91,18 @@ var app = {
         */
        
        // Now with the views being routed to item view or Details view, we call the route()
-       this.store = new MemoryStore (function (){
-        		self.route();
-       });  
+       // --------- this.store = new MemoryStore (function (){
+       // 		self.route();
+       //});  
        
        
        // Try phonegap database functions.
        //console.log("Try DB functions");
        //dbAccess.dbInit();
        
+       
+       // Sqlite 3
+       onBodyLoad();
             
     }
     
